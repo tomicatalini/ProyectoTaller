@@ -12,6 +12,7 @@ using NLog;
 
 
 using System.Threading.Tasks;
+using AppTerminal.Dominio;
 
 namespace AppTerminal.Controlador
 {
