@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppTerminal.BaseDeDatos
 {
+    //https://github.com/utn-frcu-isi-tdp/account-manager/blob/master/AccountManager/DAL/IRepository.cs
     class Cliente
     {
         public int Documento { get; set; }
