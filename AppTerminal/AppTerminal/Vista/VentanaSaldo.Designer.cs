@@ -78,6 +78,7 @@
             this.Name = "VentanaSaldo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Saldo cuenta corriente";
+            this.Load += new System.EventHandler(this.VentanaSaldo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

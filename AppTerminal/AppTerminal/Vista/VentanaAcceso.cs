@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.IO;
-using System.Diagnostics;
-using System.Linq;
-using Newtonsoft.Json;
 using AppTerminal.DTO;
-using AppTerminal.BaseDeDatos;
 using System.Windows.Forms;
 using AppTerminal.Controlador;
 
