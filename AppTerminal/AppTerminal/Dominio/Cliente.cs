@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppTerminal.BaseDeDatos
+namespace AppTerminal.Dominio
 {
     //https://github.com/utn-frcu-isi-tdp/account-manager/blob/master/AccountManager/DAL/IRepository.cs
     class Cliente

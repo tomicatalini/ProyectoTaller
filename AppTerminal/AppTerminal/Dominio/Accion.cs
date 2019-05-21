@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppTerminal.BaseDeDatos
+namespace AppTerminal.Dominio
 {
     class Accion
     {
