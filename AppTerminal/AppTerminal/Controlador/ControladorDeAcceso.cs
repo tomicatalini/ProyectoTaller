@@ -14,6 +14,7 @@ namespace AppTerminal.Controlador
 {
     public class ControladorDeAcceso
     {
+
         private static Logger iLog = LogManager.GetCurrentClassLogger();
         public bool Acceso(ClienteDTO pCliente)
         {
