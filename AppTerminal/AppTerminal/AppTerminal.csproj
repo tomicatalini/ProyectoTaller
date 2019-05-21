@@ -61,7 +61,6 @@
     <Compile Include="BaseDeDatos\IRepositorioAcciones.cs" />
     <Compile Include="Dominio\Accion.cs" />
     <Compile Include="Dominio\Cliente.cs" />
-    <Compile Include="Controlador\ControladorDeAcceso.cs" />
     <Compile Include="Controlador\ControladorDeOperaciones.cs" />
     <Compile Include="DTO\ClienteDTO.cs" />
     <Compile Include="DTO\MovimientoDTO.cs" />

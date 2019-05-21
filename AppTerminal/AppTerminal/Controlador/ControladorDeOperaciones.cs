@@ -18,7 +18,6 @@ namespace AppTerminal.Controlador
 {
     public class ControladorDeOperaciones
     {
-        private Cliente iCliente;
         private Stopwatch iCronometro = new Stopwatch();
         private static readonly Logger iLog = LogManager.GetCurrentClassLogger();
 
@@ -26,9 +25,38 @@ namespace AppTerminal.Controlador
         {
 
         }
-        public ControladorDeOperaciones(int pDocumento, string pNombre)
+
+        public bool Acceso(ClienteDTO pCliente)
         {
-            this.iCliente = new Cliente(pDocumento, pNombre);
+            iLog.Info("Se inicia la operacion de validacion de acceso del cliente");
+            var mUrl = string.Format("https://my-json-server.typicode.com/utn-frcu-isi-tdp/tas-db/clients?id={0}&pass={1}", pCliente.Documento, pCliente.Contraseña);
+
+            iLog.Info("Se realiza el pedido correspondiente al servidor");
+            // Se crea el request http
+            HttpWebRequest mRequest = (HttpWebRequest)WebRequest.Create(mUrl);
+
+            iLog.Info("Se obtiene una respuesta del servidor");
+            // Se ejecuta la consulta
+            WebResponse mResponse = mRequest.GetResponse();
+
+            // Se obtiene los datos de respuesta
+            using (Stream responseStream = mResponse.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+
+                iLog.Info("Se deserializa la respuesta para su analisis");
+                // Se parsea la respuesta y se serializa a JSON a un objeto dynamic
+                dynamic mResponseJSON = JsonConvert.DeserializeObject(reader.ReadToEnd());
+
+
+                if (mResponseJSON.Count >= 1)
+                {
+                    iLog.Info("El cliente ha ingresado correctamente");
+                    return true;
+                }
+            }
+            iLog.Warn("Error al ingresar el documento y/o contraseña.");
+            return false;
         }
 
         public List<TarjetaDTO> ObtenerProductos(int pDocumento)
@@ -91,8 +119,6 @@ namespace AppTerminal.Controlador
                 iCronometro.Stop();
 
                 Accion mAccion = new Accion(DateTime.Now.Date, iCronometro.Elapsed, "El cliente realizo una solicitud de sus productos.");
-                this.iCliente.Acciones.Add(mAccion);
-
                 iLog.Info("Finaliza la operacion obtenerProductos");
             }            
         }
@@ -140,7 +166,6 @@ namespace AppTerminal.Controlador
                 iCronometro.Stop();
 
                 Accion mAccion = new Accion(DateTime.Now.Date, iCronometro.Elapsed, "Solicitud de blanqueo de PIN.");
-                this.iCliente.Acciones.Add(mAccion);
             }
             return false;
         }
@@ -185,7 +210,6 @@ namespace AppTerminal.Controlador
                 iCronometro.Stop();
 
                 Accion mAccion = new Accion(DateTime.Now.Date, iCronometro.Elapsed, "Solicitud de saldo de la cuenta corriente.");
-                this.iCliente.Acciones.Add(mAccion);
             }
         }
 
@@ -237,7 +261,6 @@ namespace AppTerminal.Controlador
                 iCronometro.Stop();
 
                 Accion mAccion = new Accion(DateTime.Now.Date, iCronometro.Elapsed, "Solicitud de los moviemientos del cliente.");
-                this.iCliente.Acciones.Add(mAccion);
             }
         }
     }

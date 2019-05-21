@@ -17,12 +17,12 @@ namespace AppTerminal.Vista
     public partial class FormAcceso : Form
     {
 
-        private ControladorDeAcceso iControlador;
+        private ControladorDeOperaciones iControlador;
 
         public FormAcceso()
         {
             InitializeComponent();
-            this.iControlador = new ControladorDeAcceso();
+            this.iControlador = new ControladorDeOperaciones();
         }
 
         private void FormAcceso_Load(object sender, EventArgs e)
